@@ -2,7 +2,9 @@
   <div>
     <loading :active.sync="isLoading">
          <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
-            <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+            <div><div></div></div><div><div></div></div><div><div></div></div><div><div>
+            </div></div><div><div></div></div><div><div></div></div><div><div></div>
+            </div><div><div></div></div>
           </div></div>
     </loading>
     <div class="text-right mt-7">
@@ -194,10 +196,8 @@ export default {
     getProducts(page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/products?page=${page}`;
       const vm = this;
-      console.log(process.env.VUE_APP_APIPATH, process.env.VUE_APP_CUSTOMPATH);
       vm.isLoading = true;
       this.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -249,9 +249,7 @@ export default {
       }
 
 
-      // console.log(process.env.VUE_APP_APIPATH, process.env.VUE_APP_CUSTOMPATH);
       this.$http[httpMethod](api, { data: vm.tempProduct }).then((response) => {
-        // console.log(response.data);
         if (response.data.success) {
           if (vm.isNew !== 'delete') {
             $('#productModal').modal('hide');
@@ -265,7 +263,6 @@ export default {
       });
     },
     uploadFile() {
-      console.log(this);
       const uploadedFile = this.$refs.files.files[0];
       const vm = this;
       const formData = new FormData();
@@ -277,10 +274,8 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           vm.status.fileUploading = false;
-          // vm.tempProduct.imageUrl = response.data.imageUrl
           vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
         } else {
           this.$bus.$emit('messsage:push', response.data.message, 'danger');

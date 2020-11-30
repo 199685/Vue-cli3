@@ -79,7 +79,7 @@
       </div>
     </div>
      <div class="my-5 row justify-content-center " v-if="cart.final_total>0">
-      <div class="my-5 col-md-6 justify-content-center">
+      <div class="my-5 col-lg-6 justify-content-center">
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -117,7 +117,7 @@
             </tfoot>
           </table>
         </div>
-        
+
 
         <div class="input-group mb-3 input-group-sm">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
@@ -132,7 +132,7 @@
     </div>
 
     <div class="my-5 row justify-content-center">
-      <validation-observer v-slot="{ invalid }" class="col-md-6">
+      <validation-observer v-slot="{ invalid }" class="col-lg-6">
           <form  @submit.prevent="createOrder">
 
               <validation-provider class="form-group" rules="required|email" v-slot="{ errors,  classes }">
@@ -231,7 +231,7 @@ export default {
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.products = response.data.products;
-        console.log(response);
+
         vm.isLoading = false;
       });
     },
@@ -240,11 +240,11 @@ export default {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
       vm.status.loadingItem = id;
-      console.log(id);
+
       this.$http.get(url).then((response) => {
         vm.product = response.data.product;
         $('#productModal').modal('show');
-        console.log(response.data.product);
+
         vm.status.loadingItem = '';
       });
     },
@@ -257,7 +257,6 @@ export default {
         qty,
       };
       this.$http.post(url, { data: cart }).then((response) => {
-        console.log(response);
         vm.status.loadingItem = '';
         vm.getCart();
         $('#productModal').modal('hide');
@@ -269,7 +268,7 @@ export default {
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.cart = response.data.data;
-        console.log(response);
+
         vm.isLoading = false;
       });
     },
@@ -279,8 +278,6 @@ export default {
       vm.isLoading = true;
       this.$http.delete(url).then(() => {
         vm.getCart();
-        // console.log(response);
-        // vm.isLoading = false;
       });
     },
     addCouponCode() {
@@ -292,7 +289,7 @@ export default {
       vm.isLoading = true;
       this.$http.post(url, { data: coupon }).then((response) => {
         vm.getCart();
-        console.log(response);
+
         vm.isLoading = false;
       });
     },
@@ -300,21 +297,9 @@ export default {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
       const order = vm.form;
-      // vm.isLoading = true;
-      // this.$validator.validate().then((result) => {
-      //   if (result) {
-      //     this.$http.post(url, { data: order }).then((response) => {
-      //       console.log('訂單已建立', response);
-      //       // vm.getCart();
-      //       vm.isLoading = false;
-      //     });
-      //   } else {
-      //     console.log('欄位不完整');
-      //   }
-      // });
+
       this.$http.post(url, { data: order }).then((response) => {
         console.log('訂單已建立', response);
-        // vm.getCart();
         vm.isLoading = false;
         if (response.data.success) {
           vm.$router.push(`/customer_checkout/${response.data.orderId}`);

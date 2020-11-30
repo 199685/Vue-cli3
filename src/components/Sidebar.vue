@@ -6,7 +6,7 @@
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>管理員</span>
                     <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                        
+
                     </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
@@ -18,7 +18,7 @@
                     </li>
                     <li class="nav-item gray-hover" :class="{'gray-active': linkname ==='order'}" @click="linkname='order'">
                        <router-link to="/order_list" class="nav-link">
-                        
+
                         <i class="far fa-list-alt mr-1"></i>
                         <p class="d-inline-block m-0">訂單列表</p>
                         </router-link>
@@ -33,13 +33,13 @@
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>模擬功能</span>
                     <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                        
+
                     </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                     <li class="nav-item gray-hover" :class="{'gray-active': linkname ==='customer_order'}" @click="linkname='customer_order'">
                         <router-link to="/customer_order" class="nav-link">
-                        
+
                         <i class="fas fa-shopping-cart mr-1"></i>
                         <p class="d-inline-block m-0">模擬訂單</p>
                         </router-link>
@@ -55,13 +55,11 @@ export default {
 
   data() {
     return {
-        linkname: ''
+      linkname: '',
     };
   },
-  
+
 
 };
 
 </script>
-
-

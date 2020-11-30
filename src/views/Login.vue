@@ -32,11 +32,10 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`; // 加admin是為了存cookies
       const vm = this;
       this.$http.post(api, vm.user).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           const { token } = response.data;
           const { expired } = response.data;
-          console.log(token, expired);
+
           document.cookie = `hexCookie=${token}; expires=${new Date(expired)};`;
           vm.$router.push('/admin/products');
         }

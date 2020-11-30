@@ -5,7 +5,7 @@
             <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
           </div></div>
     </loading>
-    
+
     <div class="table-responsive-md mt-7">
       <table class="table mt-4">
       <thead>
@@ -43,12 +43,12 @@
 
             <span v-else class="text-danger">未付款</span>
           </td>
-         
-          
+
+
            <td>
                <div class="btn-group d-block d-md-flex" role="group" aria-label="Third group">
                  <button class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">編輯</button>
-                 
+
               </div>
 
           </td>
@@ -73,7 +73,7 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              
+
               <div class="col">
               <div class="form-row">
 
@@ -83,13 +83,13 @@
                     placeholder="請輸入購買日期" v-model="paid_date">
                 </div>
                 <div class="form-group col-md-6">
-                  
+
                   <label for="is_paid">是否付款</label>
                   <input type="text" class="form-control" id="is_paid"
                     placeholder="請輸入是否付款" v-model="tempOrder.is_paid">
                 </div>
               </div>
-                
+
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -116,7 +116,7 @@
                       placeholder="請輸入應付金額" v-model="tempOrder.total">
                   </div>
                 </div>
-                
+
 
               </div>
             </div>
@@ -163,25 +163,25 @@ export default {
       orders: [],
       pagination: {},
       tempOrder: {
-        create_at: "",
-        id: "",
-        is_paid: "" ,
-        message: "",
-        paid_date: "" ,
-        payment_method: "",
+        create_at: '',
+        id: '',
+        is_paid: '',
+        message: '',
+        paid_date: '',
+        payment_method: '',
         products: {
-          
+
         },
-        total: "",
+        total: '',
         user: {
-          address: "",
-          email: "",
-          name: "",
-          tel: ""
+          address: '',
+          email: '',
+          name: '',
+          tel: '',
         },
-        num: ""
+        num: '',
       },
-      paid_date: "",
+      paid_date: '',
       isNew: false,
       isLoading: false,
     };
@@ -193,70 +193,65 @@ export default {
     getorders(page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`;
       const vm = this;
-      console.log(process.env.VUE_APP_APIPATH, process.env.VUE_APP_CUSTOMPATH);
       vm.isLoading = true;
       this.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.orders = response.data.orders;
         vm.pagination = response.data.pagination;
       });
     },
     openModal(isNew, item) {
-     
-      if (isNew === "edit") {
+      if (isNew === 'edit') {
         this.tempOrder = Object.assign({}, item);
-          this.isNew = 'edit';
-          const newDate = new Date(this.tempOrder.paid_date);
-          const year = newDate.getFullYear();
-          let month = newDate.getMonth() + 1;
-          let day = newDate.getDate();
-          if (month < 10) {
-            month = 0 + String(month);
-          }
-          if (day < 10) {
-            day = 0 + String(day);
-          }
-          this.paid_date = `${year}-${month}-${day}`;
+        this.isNew = 'edit';
+        const newDate = new Date(this.tempOrder.paid_date);
+        const year = newDate.getFullYear();
+        let month = newDate.getMonth() + 1;
+        let day = newDate.getDate();
+        if (month < 10) {
+          month = 0 + String(month);
+        }
+        if (day < 10) {
+          day = 0 + String(day);
+        }
+        this.paid_date = `${year}-${month}-${day}`;
       }
       if (this.isNew !== 'delete') {
         $('#orderModal').modal('show');
-      } 
+      }
     },
     upOrders() {
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/order`;
       const vm = this;
-      let httpMethod = 'put';
+      const httpMethod = 'put';
 
-      if(vm.isNew === 'edit') {
-           api = `${api}/${vm.tempOrder.id}`;
+      if (vm.isNew === 'edit') {
+        api = `${api}/${vm.tempOrder.id}`;
       }
 
 
       this.$http[httpMethod](api, { data: vm.tempOrder }).then((response) => {
-        
         if (response.data.success) {
           if (vm.isNew !== 'delete') {
             $('#orderModal').modal('hide');
-          
-          } 
+          }
           vm.getorders();
         } else {
           console.log('失敗了');
         }
       });
     },
-   
+
   },
   created() {
     this.getorders();
   },
   watch: {
     paid_date() {
-           const vm = this;
-            vm.tempOrder.paid_date = new Date(vm.paid_date).getTime();
-    }
-  }
+      const vm = this;
+      vm.tempOrder.paid_date = new Date(vm.paid_date).getTime();
+    },
+  },
 };
 </script>
 
