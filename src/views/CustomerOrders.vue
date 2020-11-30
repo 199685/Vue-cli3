@@ -1,9 +1,13 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
-    <div class="row mt-4">
-      <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
-        <div class="card border-0 shadow-sm min-height-400">
+     <loading :active.sync="isLoading">
+        <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
+          <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+        </div></div>
+    </loading>
+    <div class="row mt-7">
+      <div class="col-lg-6 col-xl-4 mb-4" v-for="item in products" :key="item.id">
+        <div class="card shadow-sm min-height-400">
           <div style="height: 150px; background-size: cover; background-position: center"
             :style="{backgroundImage: `url(${item.imageUrl})`}">
           </div>
@@ -75,42 +79,45 @@
       </div>
     </div>
      <div class="my-5 row justify-content-center " v-if="cart.final_total>0">
-      <div class="my-5 row justify-content-center">
-        <table class="table">
-          <thead>
-            <th></th>
-            <th>品名</th>
-            <th>數量</th>
-            <th>單價</th>
-          </thead>
-          <tbody>
-            <tr v-for="item in cart.carts" :key="item.id">
-              <td class="align-middle">
-                <button type="button" class="btn btn-outline-danger btn-sm" @click="removeCartItem(item.id)">
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              </td>
-              <td class="align-middle">
-                {{ item.product.title }}
-                 <div class="text-success" v-if="item.coupon">
-                  已套用優惠券
-                </div>
-              </td>
-              <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-              <td class="align-middle text-right">{{ item.final_total }}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="text-right">總計</td>
-              <td class="text-right">{{ cart.total }}</td>
-            </tr>
-             <tr v-if="cart.final_total !== cart.total">
-              <td colspan="3" class="text-right text-success">折扣價</td>
-              <td class="text-right text-success">{{ cart.final_total }}</td>
-            </tr>
-          </tfoot>
-        </table>
+      <div class="my-5 col-md-6 justify-content-center">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <th></th>
+              <th>品名</th>
+              <th>數量</th>
+              <th>單價</th>
+            </thead>
+            <tbody>
+              <tr v-for="item in cart.carts" :key="item.id">
+                <td class="align-middle">
+                  <button type="button" class="btn btn-outline-danger btn-sm" @click="removeCartItem(item.id)">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </td>
+                <td class="align-middle">
+                  {{ item.product.title }}
+                  <div class="text-success" v-if="item.coupon">
+                    已套用優惠券
+                  </div>
+                </td>
+                <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
+                <td class="align-middle text-right">{{ item.final_total }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" class="text-right">總計</td>
+                <td class="text-right">{{ cart.total }}</td>
+              </tr>
+              <tr v-if="cart.final_total !== cart.total">
+                <td colspan="3" class="text-right text-success">折扣價</td>
+                <td class="text-right text-success">{{ cart.final_total }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        
 
         <div class="input-group mb-3 input-group-sm">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
@@ -324,3 +331,9 @@ export default {
 };
 
 </script>
+
+<style scoped>
+textarea{
+  resize: none
+}
+</style>

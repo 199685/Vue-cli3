@@ -1,7 +1,11 @@
 <template>
-  <div class=" mt-md-0">
-   <loading :active.sync="isLoading" ></loading>
-    <div class="text-right mt-4">
+  <div>
+    <loading :active.sync="isLoading">
+         <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
+            <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+          </div></div>
+    </loading>
+    <div class="text-right mt-7">
       <button class="btn btn-primary" @click="openModal('add')">建立新的產品</button>
     </div>
     <div class="table-responsive-md">

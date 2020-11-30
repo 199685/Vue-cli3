@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue';
 import App from './App.vue';
 import axios from 'axios';
@@ -51,6 +52,7 @@ Vue.filter('currency', currencyFilter);
 Vue.filter('percent', percentFilter);
 Vue.filter('date', dateFilter);
 
+
 Vue.config.productionTip = false;
 
 new Vue({
@@ -66,7 +68,7 @@ router.beforeEach((to, from, next) => {
 
 
   if (to.meta.requiresAuth) {
-    const api = `${process.env.APIPATH}/api/user/check`; // 加admin是為了存cookies
+    const api = `${process.env.VUE_APP_APIPATH}/api/user/check`; // 加admin是為了存cookies
     // const vm =this
     axios.post(api).then((response) => {
       // console.log(response.data)

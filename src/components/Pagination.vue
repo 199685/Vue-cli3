@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" class="mt-3">
             <ul class="pagination justify-content-center">
                 <li class="page-item" :class="{'disabled': !pagination.has_pre}">
                 <a class="page-link" href="#" aria-label="Previous" @click="getProducts(pagination.current_page - 1)">

@@ -1,7 +1,11 @@
 <template>
-  <div class=" mt-md-0">
-   <loading :active.sync="isLoading" ></loading>
-    <div class="text-right mt-4">
+  <div>
+    <loading :active.sync="isLoading">
+         <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
+          <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+          </div></div>
+    </loading>
+    <div class="text-right mt-7">
       <button class="btn btn-warning" @click="openModal('add')">建立新的優惠券</button>
     </div>
     <div class="table-responsive-md">
@@ -28,7 +32,7 @@
             <span v-else>未啟用</span>
           </td>
           <td>
-              <div class="btn-group" role="group" aria-label="Third group">
+              <div class="btn-group d-block d-md-flex" role="group" aria-label="Third group">
                  <button class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">編輯</button>
                  <button class="btn btn-outline-danger btn-sm" @click="openModal('delete', item)">刪除</button>
               </div>

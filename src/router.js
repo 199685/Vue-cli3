@@ -7,6 +7,7 @@ import Products from '@/views/Products';
 import CustomerOrder from '@/views/CustomerOrders';
 import CustomerCheckout from '@/views/CustomerCheckout';
 import Coupons from '@/views/Coupons';
+import OrderList from '@/views/OrderList';
 
 Vue.use(Router);
 
@@ -57,6 +58,11 @@ export default new Router({
           name: 'CustomerCheckout',
           component: CustomerCheckout,
         },
+        {
+          path: 'order_list',
+          name: 'OrderList',
+          component: OrderList,
+        }
       ],
     },
   ],
