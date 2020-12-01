@@ -2,7 +2,9 @@
   <div>
      <loading :active.sync="isLoading">
         <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
-          <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+          <div><div></div></div><div><div></div></div><div>
+          <div></div></div><div><div></div></div><div><div>
+          </div></div><div><div></div></div><div><div></div></div><div><div></div></div>
         </div></div>
     </loading>
     <div class="row mt-7">
@@ -29,7 +31,8 @@
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
               查看更多
             </button>
-             <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
+             <button type="button" class="btn btn-outline-danger btn-sm ml-auto"
+              @click="addtoCart(item.id)">
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
               加到購物車
             </button>
@@ -91,7 +94,8 @@
             <tbody>
               <tr v-for="item in cart.carts" :key="item.id">
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-danger btn-sm" @click="removeCartItem(item.id)">
+                  <button type="button" class="btn btn-outline-danger btn-sm"
+                   @click="removeCartItem(item.id)">
                     <i class="far fa-trash-alt"></i>
                   </button>
                 </td>
@@ -135,7 +139,8 @@
       <validation-observer v-slot="{ invalid }" class="col-lg-6">
           <form  @submit.prevent="createOrder">
 
-              <validation-provider class="form-group" rules="required|email" v-slot="{ errors,  classes }">
+              <validation-provider class="form-group" rules="required|email"
+               v-slot="{ errors,  classes }">
                 <div class="form-group">
                    <!-- 輸入框 -->
                   <label for="email">Email</label>
@@ -147,7 +152,8 @@
 
               </validation-provider>
 
-              <validation-provider class="form-group" rules="required" v-slot="{ errors,  classes }">
+              <validation-provider class="form-group" rules="required"
+              v-slot="{ errors,  classes }">
                 <div class="form-group">
                    <!-- 輸入框 -->
                   <label for="username">收件人姓名</label>
@@ -159,7 +165,8 @@
 
               </validation-provider>
 
-              <validation-provider class="form-group" rules="required|digits:10" v-slot="{ errors,  classes }">
+              <validation-provider class="form-group" rules="required|digits:10"
+              v-slot="{ errors,  classes }">
                 <div class="form-group">
                    <!-- 輸入框 -->
                   <label for="usertel">收件人電話</label>
@@ -171,7 +178,8 @@
 
               </validation-provider>
 
-              <validation-provider class="form-group" rules="required" v-slot="{ errors,  classes }">
+              <validation-provider class="form-group" rules="required"
+              v-slot="{ errors,  classes }">
                 <div class="form-group">
                    <!-- 輸入框 -->
                   <label for="useraddress">收件人地址</label>
@@ -243,6 +251,7 @@ export default {
 
       this.$http.get(url).then((response) => {
         vm.product = response.data.product;
+        // eslint-disable-next-line
         $('#productModal').modal('show');
 
         vm.status.loadingItem = '';
@@ -256,9 +265,10 @@ export default {
         product_id: id,
         qty,
       };
-      this.$http.post(url, { data: cart }).then((response) => {
+      this.$http.post(url, { data: cart }).then(() => {
         vm.status.loadingItem = '';
         vm.getCart();
+        // eslint-disable-next-line
         $('#productModal').modal('hide');
       });
     },
@@ -287,7 +297,7 @@ export default {
         code: vm.coupon_code,
       };
       vm.isLoading = true;
-      this.$http.post(url, { data: coupon }).then((response) => {
+      this.$http.post(url, { data: coupon }).then(() => {
         vm.getCart();
 
         vm.isLoading = false;
@@ -299,7 +309,6 @@ export default {
       const order = vm.form;
 
       this.$http.post(url, { data: order }).then((response) => {
-        console.log('訂單已建立', response);
         vm.isLoading = false;
         if (response.data.success) {
           vm.$router.push(`/customer_checkout/${response.data.orderId}`);

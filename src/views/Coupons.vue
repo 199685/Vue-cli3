@@ -2,7 +2,9 @@
   <div>
     <loading :active.sync="isLoading">
          <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
-          <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+          <div><div></div></div><div><div></div></div><div><div>
+          </div></div><div><div></div></div><div><div></div></div>
+          <div><div></div></div><div><div></div></div><div><div></div></div>
           </div></div>
     </loading>
     <div class="text-right mt-7">
@@ -16,7 +18,7 @@
           <th width="100">折扣百分比</th>
           <th width="120">到期日</th>
           <th width="100">是否啟用</th>
-          <th width="50">編輯</th>
+          <th width="100">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -33,8 +35,10 @@
           </td>
           <td>
               <div class="btn-group d-block d-md-flex" role="group" aria-label="Third group">
-                 <button class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">編輯</button>
-                 <button class="btn btn-outline-danger btn-sm" @click="openModal('delete', item)">刪除</button>
+                 <button class="btn btn-outline-primary btn-sm"
+                 @click="openModal('edit', item)">編輯</button>
+                 <button class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete', item)">刪除</button>
               </div>
 
           </td>
@@ -99,7 +103,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary"
+            data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" @click="updateCoupon()">更新優惠券</button>
           </div>
         </div>
@@ -133,7 +138,7 @@
 
 
 <script>
-import Page from '../components/Pagination';
+import Page from '../components/Pagination.vue';
 
 export default {
   data() {
@@ -146,7 +151,7 @@ export default {
       status: {
         fileUploading: false,
       },
-      due_date: '1999-01-01',
+      due_date: '',
 
     };
   },
@@ -157,16 +162,19 @@ export default {
     getCoupons(page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
       const vm = this;
-      console.log(process.env.VUE_APP_APIPATH, process.env.VUE_APP_CUSTOMPATH);
       vm.isLoading = true;
       this.$http.get(api).then((response) => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;
       });
     },
     openModal(isNew, item) {
+      let newDate;
+      let year;
+      let month;
+      let day;
+
       switch (isNew) {
         case 'add':
           this.tempCoupon = {};
@@ -176,10 +184,11 @@ export default {
 
         case 'edit':
           this.tempCoupon = Object.assign({}, item);
-          const newDate = new Date(this.tempCoupon.due_date);
-          const year = newDate.getFullYear();
-          let month = newDate.getMonth() + 1;
-          let day = newDate.getDate();
+          newDate = new Date(this.tempCoupon.due_date);
+          year = newDate.getFullYear();
+          month = newDate.getMonth() + 1;
+          day = newDate.getDate();
+
           if (month < 10) {
             month = 0 + String(month);
           }
@@ -190,15 +199,17 @@ export default {
           this.isNew = 'edit';
           break;
 
-        case 'delete':
+        default:
           this.tempCoupon = Object.assign({}, item);
           this.isNew = 'delete';
           break;
       }
 
       if (this.isNew !== 'delete') {
+        // eslint-disable-next-line
         $('#couponModal').modal('show');
       } else {
+        // eslint-disable-next-line
         $('#delCouponModal').modal('show');
       }
     },
@@ -217,7 +228,7 @@ export default {
           httpMethod = 'put';
           break;
 
-        case 'delete':
+        default:
           api = `${api}/${vm.tempCoupon.id}`;
           httpMethod = 'delete';
           break;
@@ -229,14 +240,16 @@ export default {
         // console.log(response.data);
         if (response.data.success) {
           if (vm.isNew !== 'delete') {
+            // eslint-disable-next-line
             $('#couponModal').modal('hide');
             vm.due_date = '1999-01-01';
           } else {
+            // eslint-disable-next-line
             $('#delCouponModal').modal('hide');
           }
           vm.getCoupons();
         } else {
-          console.log('失敗了');
+          // 失敗了
         }
       });
     },
@@ -258,5 +271,6 @@ export default {
 #customFile{
   width: 108%;
 }
+
 
 </style>

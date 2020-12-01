@@ -2,7 +2,9 @@
   <div>
     <loading :active.sync="isLoading">
          <div class="loadingio-spinner-spin-5xz8vi7q1c2"><div class="ldio-2zmxuno6hnw">
-            <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+            <div><div></div></div><div><div></div></div><div>
+            <div></div></div><div><div></div></div><div><div>
+            </div></div><div><div></div></div><div><div></div></div><div><div></div></div>
           </div></div>
     </loading>
 
@@ -31,7 +33,8 @@
           <td>
             <ul class="list-unstyled">
               <li v-for="product in item.products" :key="product.id" class="text-left">
-                {{ product.product.title }} <span class="pl-1">數量：</span>{{ product.qty }}{{ product.product.unit }}
+                {{ product.product.title }} <span class="pl-1">數量：</span>
+                {{ product.qty }}{{ product.product.unit }}
               </li>
             </ul>
           </td>
@@ -47,7 +50,8 @@
 
            <td>
                <div class="btn-group d-block d-md-flex" role="group" aria-label="Third group">
-                 <button class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">編輯</button>
+                 <button class="btn btn-outline-primary btn-sm"
+                 @click="openModal('edit', item)">編輯</button>
 
               </div>
 
@@ -155,8 +159,8 @@
 </template>
 
 <script>
-import Page from '../components/Pagination';
-
+import Page from '../components/Pagination.vue';
+/* eslint-env jquery */
 export default {
   data() {
     return {
@@ -217,6 +221,7 @@ export default {
         this.paid_date = `${year}-${month}-${day}`;
       }
       if (this.isNew !== 'delete') {
+        // eslint-disable-next-line
         $('#orderModal').modal('show');
       }
     },
@@ -237,7 +242,7 @@ export default {
           }
           vm.getorders();
         } else {
-          console.log('失敗了');
+          // 失敗了
         }
       });
     },

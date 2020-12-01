@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Login from '@/views/Login';
-import Dashboard from '@/components/Dashboard';
-import Products from '@/views/Products';
-import CustomerOrder from '@/views/CustomerOrders';
-import CustomerCheckout from '@/views/CustomerCheckout';
-import Coupons from '@/views/Coupons';
-import OrderList from '@/views/OrderList';
+import Login from '@/views/Login.vue';
+import Dashboard from '@/components/Dashboard.vue';
+import Products from '@/views/Products.vue';
+import CustomerOrder from '@/views/CustomerOrders.vue';
+import CustomerCheckout from '@/views/CustomerCheckout.vue';
+import Coupons from '@/views/Coupons.vue';
+import OrderList from '@/views/OrderList.vue';
 
 Vue.use(Router);
 

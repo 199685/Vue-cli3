@@ -75,7 +75,6 @@ export default {
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.order = response.data.order;
-        console.log(response);
         vm.isLoading = false;
       });
     },
@@ -84,7 +83,6 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${vm.orderId}`;
       vm.isLoading = true;
       this.$http.post(url).then((response) => {
-        console.log(response);
         if (response.data.success) {
           vm.getOrder();
         }

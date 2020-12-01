@@ -39,8 +39,10 @@
           </td>
           <td>
               <div class="btn-group d-block d-md-flex" role="group" aria-label="Third group">
-                 <button class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">編輯</button>
-                 <button class="btn btn-outline-danger btn-sm" @click="openModal('delete', item)">刪除</button>
+                 <button class="btn btn-outline-primary btn-sm"
+                 @click="openModal('edit', item)">編輯</button>
+                 <button class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete', item)">刪除</button>
               </div>
 
           </td>
@@ -174,7 +176,7 @@
 </template>
 
 <script>
-import Page from '../components/Pagination';
+import Page from '../components/Pagination.vue';
 
 export default {
   data() {
@@ -215,15 +217,17 @@ export default {
           this.isNew = 'edit';
           break;
 
-        case 'delete':
+        default:
           this.tempProduct = Object.assign({}, item);
           this.isNew = 'delete';
           break;
       }
 
       if (this.isNew !== 'delete') {
+        // eslint-disable-next-line
         $('#productModal').modal('show');
       } else {
+        // eslint-disable-next-line
         $('#delProductModal').modal('show');
       }
     },
@@ -242,7 +246,7 @@ export default {
           httpMethod = 'put';
           break;
 
-        case 'delete':
+        default:
           api = `${api}/${vm.tempProduct.id}`;
           httpMethod = 'delete';
           break;
@@ -252,13 +256,15 @@ export default {
       this.$http[httpMethod](api, { data: vm.tempProduct }).then((response) => {
         if (response.data.success) {
           if (vm.isNew !== 'delete') {
+            // eslint-disable-next-line
             $('#productModal').modal('hide');
           } else {
+            // eslint-disable-next-line
             $('#delProductModal').modal('hide');
           }
           vm.getProducts();
         } else {
-          console.log('失敗了');
+          // 失敗了
         }
       });
     },

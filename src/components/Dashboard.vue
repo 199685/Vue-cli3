@@ -18,9 +18,9 @@
 
 
 <script>
-import Sidebar from './Sidebar';
-import Navbar from './Navbar';
-import Alert from './AlertMessage';
+import Sidebar from './Sidebar.vue';
+import Navbar from './Navbar.vue';
+import Alert from './AlertMessage.vue';
 
 export default {
   components: {
@@ -31,7 +31,7 @@ export default {
   created() {
     const myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)hexCookie\s*=\s*([^;]*).*$)|^.*$/, '$1');
     this.$http.defaults.headers.common.Authorization = myCookie;
-    // console.log('123',myCookie)
+    // console.log("123",myCookie)
   },
 };
 </script>
