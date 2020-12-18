@@ -70,7 +70,7 @@
           </div>
           <div class="modal-footer">
             <div class="text-muted text-nowrap mr-3">
-              小計 <strong>{{ product.num * product.price }}</strong> 元
+              小計 <strong>{{ total }}</strong> 元
             </div>
             <button type="button" class="btn btn-primary"
               @click="addtoCart(product.id, product.num)">
@@ -321,7 +321,15 @@ export default {
     this.getProducts();
     this.getCart();
   },
-
+  computed: {
+    total() {
+      const money = this.product.num * this.product.price;
+      if (!(money > this.product.price)) {
+        return this.product.price;
+      }
+      return money;
+    },
+  },
 };
 
 </script>

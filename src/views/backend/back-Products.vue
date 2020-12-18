@@ -7,7 +7,7 @@
             </div><div><div></div></div>
           </div></div>
     </loading>
-    <div class="text-right mt-7">
+    <div class="text-right mt-8">
       <button class="btn btn-primary" @click="openModal('add')">建立新的產品</button>
     </div>
     <div class="table-responsive-md">
@@ -103,6 +103,12 @@
                   </div>
                 </div>
 
+               <div class="form-group">
+                  <label for="num">數量</label>
+                  <input type="number" class="form-control" id="num"
+                    placeholder="請輸入標題" v-model="tempProduct.num">
+                </div>
+
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
@@ -114,6 +120,35 @@
                     <input type="number" class="form-control" id="price"
                       placeholder="請輸入售價" v-model="tempProduct.price">
                   </div>
+                </div>
+                <div class="form-row">
+
+
+                  <div class="form-group">
+                        <p>盛產季節</p>
+                     <div class="d-flex">
+                          <div class="d-flex align-items-center mr-2">
+                            <label class="mb-0 pr-1" for="spring">春天</label>
+                            <input type="checkbox" value="spring" id="spring"
+                            v-model="tempProduct.season">
+                          </div>
+                          <div class="d-flex align-items-center mr-2">
+                            <label class="mb-0 pr-1" for="summer">夏天</label>
+                            <input type="checkbox" value="summer" id="summer"
+                            v-model="tempProduct.season">
+                          </div>
+                          <div class="d-flex align-items-center mr-2">
+                            <label class="mb-0 pr-1" for="autumn">秋天</label>
+                            <input type="checkbox" value="autumn" id="autumn"
+                            v-model="tempProduct.season">
+                          </div>
+                          <div class="d-flex align-items-center mr-2">
+                            <label class="mb-0 pr-1" for="winter">冬天</label>
+                            <input type="checkbox" value="winter" id="winter"
+                            v-model="tempProduct.season">
+                          </div>
+                      </div>
+                    </div>
                 </div>
                 <hr>
 
@@ -129,7 +164,7 @@
                 </div>
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox"
+                    <input class="form-check-input" type="checkbox" value=""
                     v-model="tempProduct.is_enabled"
                       :true-value="1"
                       :false-value="0"
@@ -176,19 +211,22 @@
 </template>
 
 <script>
-import Page from '../components/Pagination.vue';
+import Page from '../../components/Pagination.vue';
 
 export default {
   data() {
     return {
       products: [],
       pagination: {},
-      tempProduct: {},
+      tempProduct: {
+        season: [],
+      },
       isNew: false,
       isLoading: false,
       status: {
         fileUploading: false,
       },
+
     };
   },
   components: {
@@ -208,7 +246,9 @@ export default {
     openModal(isNew, item) {
       switch (isNew) {
         case 'add':
-          this.tempProduct = {};
+          this.tempProduct = {
+            season: [],
+          };
           this.isNew = 'add';
           break;
 
@@ -299,5 +339,8 @@ export default {
 #customFile{
   width: 108%;
 }
-
+input[type="checkbox"]{
+  width: 20px;
+  height: 20px;
+}
 </style>

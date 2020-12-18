@@ -12,24 +12,27 @@
                     </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                    <li class="nav-item gray-hover" :class="{'gray-active': linkname ==='products'}"
+                    <li class="nav-item gray-hover"
                      @click="linkname='products'">
-                        <router-link to="/admin/products" class="nav-link">
+                        <router-link to="/admin/products" class="nav-link"
+                        active-class="gray-active">
                         <i class="fas fa-box-open mr-1"></i>
                         <p class="d-inline-block m-0">產品列表</p>
                         </router-link>
                     </li>
-                    <li class="nav-item gray-hover" :class="{'gray-active': linkname ==='order'}"
+                    <li class="nav-item gray-hover"
                      @click="linkname='order'">
-                       <router-link to="/order_list" class="nav-link">
+                       <router-link to="/admin/order_list" class="nav-link"
+                       active-class="gray-active">
 
                         <i class="far fa-list-alt mr-1"></i>
                         <p class="d-inline-block m-0">訂單列表</p>
                         </router-link>
                     </li>
-                    <li class="nav-item gray-hover" :class="{'gray-active': linkname ==='coupons'}"
+                    <li class="nav-item gray-hover"
                     @click="linkname='coupons'">
-                        <router-link to="/admin/coupons" class="nav-link">
+                        <router-link to="/admin/coupons" class="nav-link"
+                        active-class="gray-active">
                         <i class="fas fa-ticket-alt mr-1"></i>
                          <p class="d-inline-block m-0">優惠券</p>
                         </router-link>
@@ -45,9 +48,10 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                     <li class="nav-item gray-hover"
-                    :class="{'gray-active': linkname ==='customer_order'}"
+
                     @click="linkname='customer_order'">
-                        <router-link to="/customer_order" class="nav-link">
+                        <router-link to="/customer_order" class="nav-link"
+                        active-class="gray-active">
 
                         <i class="fas fa-shopping-cart mr-1"></i>
                         <p class="d-inline-block m-0">模擬訂單</p>

@@ -9,5 +9,6 @@ export default function (num) {
   if (day < 10) {
     day = 0 + String(day);
   }
+  // return `${year}/${month}/${day}`;
   return `${year}/${month}/${day}`;
 }

@@ -7,7 +7,7 @@
           <div><div></div></div><div><div></div></div><div><div></div></div>
           </div></div>
     </loading>
-    <div class="text-right mt-7">
+    <div class="text-right mt-8">
       <button class="btn btn-warning" @click="openModal('add')">建立新的優惠券</button>
     </div>
     <div class="table-responsive-md">
@@ -15,10 +15,10 @@
       <thead>
         <tr>
           <th width="250">名稱</th>
-          <th width="100">折扣百分比</th>
-          <th width="120">到期日</th>
-          <th width="100">是否啟用</th>
-          <th width="100">編輯</th>
+          <th width="150">折扣百分比</th>
+          <th width="250">到期日</th>
+          <th>是否啟用</th>
+          <th width="150">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -138,7 +138,7 @@
 
 
 <script>
-import Page from '../components/Pagination.vue';
+import Page from '../../components/Pagination.vue';
 
 export default {
   data() {
@@ -179,7 +179,7 @@ export default {
         case 'add':
           this.tempCoupon = {};
           this.isNew = 'add';
-          this.due_date = '1999-01-01';
+          this.due_date = '2020-01-01';
           break;
 
         case 'edit':
@@ -242,7 +242,7 @@ export default {
           if (vm.isNew !== 'delete') {
             // eslint-disable-next-line
             $('#couponModal').modal('hide');
-            vm.due_date = '1999-01-01';
+            vm.due_date = '2019-12-12';
           } else {
             // eslint-disable-next-line
             $('#delCouponModal').modal('hide');

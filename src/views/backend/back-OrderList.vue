@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <tr v-for="(item) in orders" :key="item.id">
-          <td>{{ item.paid_date | date}}</td>
+          <td>{{ item.paid_date | date }}</td>
           <td>{{ item.user.email }}</td>
           <td>{{ item.user.name }}</td>
           <td>
@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import Page from '../components/Pagination.vue';
+import Page from '../../components/Pagination.vue';
 /* eslint-env jquery */
 export default {
   data() {
@@ -218,6 +218,7 @@ export default {
         if (day < 10) {
           day = 0 + String(day);
         }
+        console.log(this.tempOrder.paid_date);
         this.paid_date = `${year}-${month}-${day}`;
       }
       if (this.isNew !== 'delete') {

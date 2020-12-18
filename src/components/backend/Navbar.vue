@@ -1,7 +1,9 @@
 <template>
   <div>
-    <nav class="navbar navbar-dark fixed-top bg-c5 flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand w-100 mr-0 pl-3" href="#">Company name</a>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand w-100 mr-0 pl-3" href="#">
+        <img src="../../assets/images/logo-1.png" alt="" width="50">
+      Happy Fruit</a>
      <button class="navbar-toggler position-absolute d-md-none collapsed"
      type="button" data-toggle="collapse" data-target="#sidebarMenu"
      aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
